@@ -22,8 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'index'])->name("home");
 
 Route::get('/user/register',[AuthController::class,'index'])->name("user.register");
-Route::get('/user/login',[AuthController::class,'userLoginView'])->name("user.login.view");
+Route::get('/user/login/view',[AuthController::class,'userLoginView'])->name("user.login.view");
 Route::post('/user/create',[AuthController::class,'userCreate'])->name("user.create");
+Route::post('/userlogin',[AuthController::class,'userLogin'])->name("user.login");
 
 //AUTHENTIC ROUTE START HERE
 Route::middleware(['auth'])->group(function () {

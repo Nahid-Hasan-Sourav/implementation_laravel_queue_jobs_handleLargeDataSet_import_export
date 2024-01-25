@@ -7,6 +7,7 @@ use App\Http\Requests\UserRegisterValidation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -21,7 +22,7 @@ class AuthController extends Controller
     }
 
     public function userCreate(UserRegisterValidation $request)
-{
+        {
     $validatedData = $request->validated();
     // dd($validatedData);
     $user = new User();
@@ -33,7 +34,34 @@ class AuthController extends Controller
     $user->save();
     Auth::login($user);
     return redirect()->route('dashboard');
-}
+    }
+
+    public function userLogin(Request $request)
+    {
+        $credentials = $request->only('email','password');
+
+        if (Auth::attempt($credentials)) {
+  
+            return redirect()->route('dashboard');
+        }
+
+     
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+ 
+            return redirect()->route('user.login.view')->with('error', 'Email not found');
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+  
+            return redirect()->route('user.login.view')->with('error', 'Invalid password');
+        }
+        
+      
+        return redirect()->route('user.login.view')->with('error', 'Invalid login credentials');
+    }
+
 
     public function userLogout(){
         Auth::logout();
