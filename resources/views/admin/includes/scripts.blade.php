@@ -14,3 +14,4 @@
 <script src="{{asset('/')}}admin/assets/js/starlight.js"></script>
 <script src="{{asset('/')}}admin/assets/js/ResizeSensor.js"></script>
 <script src="{{asset('/')}}admin/assets/js/dashboard.js"></script>
+<script src="{{asset('/')}}admin/assets/customjs/category.js"></script>
