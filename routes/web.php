@@ -19,8 +19,19 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
 Route::get('/',[HomeController::class,'index'])->name("home");
-Route::get('/dashboard',[DashboardController::class,'index'])->name("dashboard");
+
 Route::get('/user/register',[AuthController::class,'index'])->name("user.register");
-Route::get('/user/login',[AuthController::class,'userLogin'])->name("user.login");
+Route::get('/user/login',[AuthController::class,'userLoginView'])->name("user.login.view");
+Route::post('/user/create',[AuthController::class,'userCreate'])->name("user.create");
+
+//AUTHENTIC ROUTE START HERE
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard',[DashboardController::class,'index'])->name("dashboard");
+    Route::post('/user/logout',[AuthController::class,'userLogout'])->name("user.logout");
+
+});
+//AUTHENTIC ROUTE END HERE
+
+
+

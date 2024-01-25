@@ -29,7 +29,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
                     </p>
                     <p class="nav-item mx-4">
-                        <a class="nav-link active" aria-current="page" href="{{ route('user.login') }}">Login</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('user.login.view') }}">Login</a>
                     </p>
 
                 </form>
