@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController\AuthController;
 use App\Http\Controllers\Category\CatyegoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,8 +39,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/category/edit/{category}',[CatyegoryController::class,'editCategory'])->name("category.edit");
     Route::put('/category/update/{category}', [CatyegoryController::class, 'updateCategory'])->name('category.update');
     Route::get('/category/delete/{category}', [CatyegoryController::class, 'destroyCategory'])->name('category.destroy');
-
     //this is model binding end here 
+
+    //this resource route start here
+    Route::resource('product', ProductController::class);
+    //this resource route end here
 
 });
 //AUTHENTIC ROUTE END HERE
