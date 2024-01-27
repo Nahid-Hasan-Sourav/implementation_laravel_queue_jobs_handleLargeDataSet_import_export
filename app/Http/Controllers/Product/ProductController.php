@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductValidation;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,15 +23,27 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $category = Category::all();
+        return view('admin.product.create',compact('category'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductValidation $request)
     {
-        //
+
+        $validatedData = $request->validated();
+        // dd($request->all());
+        $product = new Product();
+        $product->category_id = $validatedData['category_id'];
+        $product->name        = $validatedData['product_name'];
+        $product->price       = $validatedData['product_price'];
+        $product->quantity    = $validatedData['product_quantity'];
+
+        $product->save();
+        return redirect()->route('product.index')->with('message','product added successfully');
+
     }
 
     /**

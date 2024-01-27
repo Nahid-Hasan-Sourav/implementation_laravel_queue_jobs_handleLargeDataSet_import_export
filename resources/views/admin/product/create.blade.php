@@ -8,7 +8,19 @@
                 <h5>ADD PRODUCT</h5>
             </div>
            <div class="card-body">
-            <form>
+            <form method="POST" action="{{ route("product.store") }}">
+                @csrf
+                <div class="form-group row">
+                    <label for="exampleInputuname3" class="col-sm-3 control-label">Category Name</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" name="category_id" id="category_id">
+                        <option value="" disabled selected> -- Select Category --</option>
+                        @foreach ($category as $item)
+                            <option value="{{ $item->id }}" >{{ $item->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label for="exampleInputuname3" class="col-sm-3 control-label">Product Name*</label>
                     <div class="col-sm-9">
@@ -26,10 +38,10 @@
                         <div class="col-sm-6">
                             <div class="row">
                              <label for="exampleInputuname3" class="col-sm-5 control-label">Product Price*</label>
-     
+
                              <div class="col-sm-7">
                                  <div class="input-group">
-         
+
                                      <input type="text" class="form-control" name="product_price" id="exampleInputuname3" placeholder="Product Price">
                                  </div>
                              </div>
@@ -38,10 +50,10 @@
                         <div class="col-sm-6">
                            <div class="row">
                             <label for="exampleInputuname3" class="col-sm-5 control-label">Product Quantity*</label>
-    
+
                             <div class="col-sm-7">
                                 <div class="input-group">
-        
+
                                     <input type="text" class="form-control" name="product_quantity" id="exampleInputuname3" placeholder="Product Quantity">
                                 </div>
                             </div>
@@ -60,7 +72,7 @@
                 </div>
             </form>
            </div>
-        
+
         </div>
     </div>
    </div>

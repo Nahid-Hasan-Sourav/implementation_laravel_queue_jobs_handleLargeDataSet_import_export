@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryValidation;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,11 @@ class CatyegoryController extends Controller
         return view('admin.category.index');
     }
 
-    public function store(Request $request){
-        $category = new Category();
+    public function store(CategoryValidation $request){
+        $validatedData = $request->validated();
 
-        $category->name = $request->categoryName;
+        $category = new Category();
+        $category->name = $validatedData['categoryName'];
         $category->save();
 
         return response()->json([
@@ -29,7 +31,7 @@ class CatyegoryController extends Controller
         return response()->json([
             "status"=>"success",
              "allCategory" => $allCategory
-            
+
         ]);
     }
 
@@ -38,7 +40,7 @@ class CatyegoryController extends Controller
         return response()->json([
             "status"=>"success",
              "category" => $category
-            
+
         ]);
     }
 
@@ -47,7 +49,7 @@ class CatyegoryController extends Controller
         $category->save();
 
         return response()->json([
-            "status"=>"success",     
+            "status"=>"success",
         ]);
 
     }
@@ -57,7 +59,7 @@ class CatyegoryController extends Controller
         $category->delete();
 
         return response()->json([
-            "status"=>"success",     
+            "status"=>"success",
         ]);
 
     }
