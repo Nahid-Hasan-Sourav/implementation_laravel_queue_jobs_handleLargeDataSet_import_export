@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.index');
+        $product = Product::with(['category'])->get();
+        return view('admin.product.index',compact('product'));
     }
 
     /**
@@ -59,7 +60,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product  = Product::with(['category'])->find($id);
+        $category = Category::all();
+
+        return view('admin.product.edit',compact('category','product'));
     }
 
     /**
@@ -67,7 +71,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        $data = Product::find($id);
+
+        $data->category_id   = $request->category_id;
+        $data->name          = $request->product_name;
+        $data->price         = $request->product_price;
+        $data->quantity      = $request->product_quantity;
+
+        $data->save();
+        return redirect()->route('product.index')->with('message','product updated successfully');
     }
 
     /**
@@ -75,6 +88,9 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Product::find($id);
+        $data->delete();
+        return back()->with('message','product deleted successfully');
+
     }
 }

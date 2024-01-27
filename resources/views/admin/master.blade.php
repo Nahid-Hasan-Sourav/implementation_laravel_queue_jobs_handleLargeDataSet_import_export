@@ -10,7 +10,7 @@
     {{-- ajax meta token start here --}}
 
 
-   
+
 
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -18,6 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @include('admin.includes.style')
+    
   </head>
 
   <body>
@@ -28,7 +29,7 @@
     <!-- ########## END: LEFT PANEL ########## -->
 
     <!-- ########## START: HEAD PANEL ########## -->
-    
+
     <div class="sl-header">
       <div class="sl-header-left">
         <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
@@ -53,11 +54,11 @@
                 <li onclick="document.getElementById('logOutBtn').submit()">
                   <a href="#"><i class="icon ion-power"></i> Sign Out</a>
               </li>
-              
+
               <form action="{{ route('user.logout') }}" method="POST" id="logOutBtn">
                   @csrf
               </form>
-              
+
               </ul>
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
@@ -260,5 +261,6 @@
     <!-- ########## END: MAIN PANEL ########## -->
 
     @include('admin.includes.scripts')
+    @stack('scripts')
   </body>
 </html>

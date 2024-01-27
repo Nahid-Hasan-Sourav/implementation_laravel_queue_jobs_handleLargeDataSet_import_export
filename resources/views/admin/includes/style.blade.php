@@ -6,3 +6,8 @@
 
  <!-- Starlight CSS -->
  <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/starlight.css">
+
+ {{-- toaster start here --}}
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+ {{-- toaster end here --}}
+ 

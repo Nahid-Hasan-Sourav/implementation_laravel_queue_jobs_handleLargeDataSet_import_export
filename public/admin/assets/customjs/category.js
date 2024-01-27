@@ -19,7 +19,7 @@ $("#addCategoryBtn").click(function(){
                         <button value="${category?.id}" class="btn btn btn-md btn-primary" onclick="editCategory(event)"> <i class="fa-regular fa-pen-to-square"></i></button>
                         <button value="${category?.id}" class="btn btn btn-md btn-danger" onclick="deleteCategory(event)"><i class="fa-solid fa-trash"></i></button>
                         </td>
-                        
+
                     </tr>`;
 
         tbody.append(row);
@@ -41,10 +41,10 @@ $("#addCategoryBtn").click(function(){
  }
 
  getCategoryData();
- 
- //add and update task is one function start here 
+
+ //add and update task is one function start here
  $("#addCategorySubmitBtn").click(function(e){
-   
+
     let categoryName = $("#categoryName").val();
     let btnValue = e.currentTarget.innerText;
     // console.log("Check btn text",btnValue);
@@ -55,14 +55,14 @@ $("#addCategoryBtn").click(function(){
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
             });
-    
+
             $.ajax({
                 url: "/category/store",
                 type: "POST",
                 data: { categoryName: categoryName },
                 success: function (response) {
                     // console.log("submit form data == : ", response);
-    
+
                     if (response.status === "success") {
                         Swal.fire({
                             icon: 'success',
@@ -73,7 +73,7 @@ $("#addCategoryBtn").click(function(){
                         });
                         $("#categoryAdd").modal('hide');
                         getCategoryData();
-                        
+
                     }
                 },
                 error: function (xhr, status, error) {
@@ -114,7 +114,7 @@ $("#addCategoryBtn").click(function(){
                     });
                     $("#categoryAdd").modal('hide');
                     getCategoryData();
-                    
+
                 }
             },
             error: function (xhr, status, error) {
@@ -125,10 +125,10 @@ $("#addCategoryBtn").click(function(){
         });
     }
 
-   
-    
+
+
 });
- //add and update task is one function end here 
+ //add and update task is one function end here
 
 
 const editCategory = (e) => {
@@ -154,7 +154,7 @@ const editCategory = (e) => {
     });
 
 
-    
+
 
 }
 
@@ -195,4 +195,5 @@ const deleteCategory=(e)=>{
       });
 }
 
- 
+
+
