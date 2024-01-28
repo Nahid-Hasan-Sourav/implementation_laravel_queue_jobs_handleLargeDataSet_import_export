@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductValidation;
+use App\Jobs\sendMailTousersJob;
 use App\Mail\SendMailToUsers;
 use App\Models\Category;
 use App\Models\Product;
@@ -49,9 +50,14 @@ class ProductController extends Controller
 
         $product->save();
 
-        foreach($allUsers as $user){
-            Mail::to($user->email)->send(new SendMailToUsers($product,$user));
-        }
+        // $job = (new \App\Jobs\sendMailTousersJob($product))
+        // ->delay(now()->addSeconds(2));
+
+        // foreach($allUsers as $user){
+            // Mail::to($user->email)->send(new SendMailToUsers($product,$user));
+            sendMailTousersJob::dispatch($product);
+            // dispatch($job);
+        // }
         return redirect()->route('product.index')->with('message','product added successfully');
 
     }
