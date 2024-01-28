@@ -6,8 +6,13 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5>ALL PRODUCT</h5>
-                <a href="{{ route('product.create') }}" class="btn btn-primary" id="addProductBtn"> ADD PRODUCT</a>
+                <div class="d-flex">
+                    <a href="{{ route('product.create') }}" class="btn btn-primary mx-3" id="addProductBtn"> ADD PRODUCT</a>
+                    <a href="{{ route('product.import.view') }}" class="btn btn-primary" id="addProductBtn"> IMPORT PRODUCT</a>
+
+                </div>
             </div>
+
             @if(session('message'))
             <small class="p-3 bg-success text-white">{{ session('message') }}</small>
 
@@ -26,6 +31,7 @@
                 </thead>
                 <tbody id="productTableBody">
                     @foreach($product as $item)
+                    {{-- {{ dd($item) }} --}}
                     <tr>
                         <th scope="row">1</th>
                         <td>{{ $item->name }}</td>

@@ -108,4 +108,5 @@ class ProductController extends Controller
         return back()->with('message','product deleted successfully');
 
     }
+    
 }

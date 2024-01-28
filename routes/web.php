@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController\AuthController;
 use App\Http\Controllers\Category\CatyegoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Import\ExcelImportController;
 use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +44,12 @@ Route::middleware(['auth'])->group(function () {
 
     //this resource route start here
     Route::resource('product', ProductController::class);
+    // product.import.view
     //this resource route end here
+
+    Route::get('/product/import/view', [ExcelImportController::class, 'importProductView'])->name('product.import.view');
+    Route::post('/product/import',      [ExcelImportController::class, 'importProduct'])->name('product.import');
+
 
 });
 //AUTHENTIC ROUTE END HERE
