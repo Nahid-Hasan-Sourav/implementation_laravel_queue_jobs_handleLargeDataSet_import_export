@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductValidation;
+use App\Mail\SendMailToUsers;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -35,7 +38,9 @@ class ProductController extends Controller
     {
 
         $validatedData = $request->validated();
-        // dd($request->all());
+        
+        $allUsers = User::where('role', 1)->get();
+      
         $product = new Product();
         $product->category_id = $validatedData['category_id'];
         $product->name        = $validatedData['product_name'];
@@ -43,6 +48,10 @@ class ProductController extends Controller
         $product->quantity    = $validatedData['product_quantity'];
 
         $product->save();
+
+        foreach($allUsers as $user){
+            Mail::to($user->email)->send(new SendMailToUsers($product,$user));
+        }
         return redirect()->route('product.index')->with('message','product added successfully');
 
     }
