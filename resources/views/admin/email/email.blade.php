@@ -43,7 +43,7 @@
             {{-- <p>Here are some example content lines.</p> --}}
         </div>
         <div class="footer">
-            <p>This Is Job Task By InsureCow &copy; 2024</p>
+            <p>Nahid Hasan Sourav &copy; 2024</p>
         </div>
     </div>
 </body>
