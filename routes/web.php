@@ -5,6 +5,7 @@ use App\Http\Controllers\Category\CatyegoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Import\ExcelImportController;
+use App\Http\Controllers\LargeDatasetController;
 use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,14 @@ Route::middleware(['auth'])->group(function () {
 
 });
 //AUTHENTIC ROUTE END HERE
+
+
+//import large dataset start here
+Route::get('/largedataset', [LargeDatasetController::class, 'index'])->name('largedataset.index');
+Route::get('/largedataset/create', [LargeDatasetController::class, 'create'])->name('largedataset.create');
+Route::post('/largedataset/store', [LargeDatasetController::class, 'store'])->name('largedataset.store');
+
+//import large dataset end here
 
 
 
