@@ -29,7 +29,7 @@ class LargeDatasetController extends Controller
         //  dd($collection);
         $filePath = Storage::putFile('uploads', $file);
         $data= ProccessLargeDatasetImport::dispatch($filePath);
-    //    dd($data);
+       dd($data);
          return redirect()->route('largedataset.index')->with('message', 'Product import process started!');
 
 
