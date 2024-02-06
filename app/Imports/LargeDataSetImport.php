@@ -29,17 +29,19 @@ class LargeDataSetImport implements ToCollection, WithChunkReading
 {
     public function collection(Collection $rows)
     {
-        foreach ($rows as $row) 
+        foreach ($rows as $key => $row) 
         {
-            dd($row->toArray()); 
-            LargeDataset::create([
-                'branch_id' => intval($row['branch_id']), 
-                'firstName' => $row['first_name'],         
-                'lastName'  => $row['last_name'],          
-                'email'     => $row['email'],             
-                'phone'     => $row['phone'],              
-                'gender'    => $row['gender'],             
-            ]);
+            if($key != 0){
+                LargeDataset::create([
+                    'branch_id' => intval($row[1]),
+                    'first_name'  => $row[2],
+                    'last_name'   => $row[3],
+                    'email'      => $row[4],
+                    'phone'      => $row[5],
+                    'gender'     => $row[6]
+                   
+                ]);
+            }
         }
     }
     public function chunkSize(): int
