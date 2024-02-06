@@ -33,12 +33,12 @@ class LargeDataSetImport implements ToCollection, WithChunkReading
         {
             dd($row->toArray()); 
             LargeDataset::create([
-                'branch_id' => intval($row['branch_id']), // Assuming 'branch_id' is a key in the $row array
-                'firstName' => $row['first_name'],         // Assuming 'first_name' is a key in the $row array
-                'lastName'  => $row['last_name'],          // Assuming 'last_name' is a key in the $row array
-                'email'     => $row['email'],              // Assuming 'email' is a key in the $row array
-                'phone'     => $row['phone'],              // Assuming 'phone' is a key in the $row array
-                'gender'    => $row['gender'],             // Assuming 'gender' is a key in the $row array
+                'branch_id' => intval($row['branch_id']), 
+                'firstName' => $row['first_name'],         
+                'lastName'  => $row['last_name'],          
+                'email'     => $row['email'],             
+                'phone'     => $row['phone'],              
+                'gender'    => $row['gender'],             
             ]);
         }
     }
