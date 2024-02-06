@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('large_datasets', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName');
-            $table->string('lastName');
+            $table->integer('branch_id');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email');
             $table->string('phone');
             $table->string('gender');
-            $table->integer('branch_id');
+          
             $table->timestamps();
         });
     }             
