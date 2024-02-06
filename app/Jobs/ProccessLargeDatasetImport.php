@@ -29,6 +29,7 @@ class ProccessLargeDatasetImport implements ShouldQueue
         $file = Storage::path($this->filePath);
 
         // Process the Excel file using Laravel Excel
-        Excel::import(new LargeDataSetImport, $file);
+        $data =Excel::toCollection(new LargeDataSetImport, $file);
+        
     }
 }

@@ -31,14 +31,14 @@ class LargeDataSetImport implements ToCollection, WithChunkReading
     {
         foreach ($rows as $row) 
         {
+            dd($row->toArray()); 
             LargeDataset::create([
-                'branch_id' => intval($row[0]),
-                'firstName'  => $row[0],
-                'lastName'   => $row[1],
-                'email'      => $row[2],
-                'phone'      => $row[3],
-                'gender'     => $row[4],
-               
+                'branch_id' => intval($row['branch_id']), 
+                'firstName' => $row['first_name'],         
+                'lastName'  => $row['last_name'],          
+                'email'     => $row['email'],             
+                'phone'     => $row['phone'],              
+                'gender'    => $row['gender'],             
             ]);
         }
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\LargeDataSetImport;
 use App\Jobs\ProccessLargeDatasetImport;
+use App\Models\LargeDataset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -11,7 +12,9 @@ use Maatwebsite\Excel\Facades\Excel;
 class LargeDatasetController extends Controller
 {
     public function index(){
-        return view('admin.largedataset.index');
+        
+        $allData = LargeDataset::paginate(5);
+        return view('admin.largedataset.index',compact('allData'));
     }
     public function create(){
         return view('admin.largedataset.create');
@@ -25,8 +28,9 @@ class LargeDatasetController extends Controller
         //  $collection = Excel::import(new LargeDataSetImport,$file );
         //  dd($collection);
         $filePath = Storage::putFile('uploads', $file);
-        ProccessLargeDatasetImport::dispatch( $filePath);
-         return redirect()->route('largedataset.index')->with('success', 'Product import process started!');
+        $data= ProccessLargeDatasetImport::dispatch($filePath);
+    //    dd($data);
+         return redirect()->route('largedataset.index')->with('message', 'Product import process started!');
 
 
         
