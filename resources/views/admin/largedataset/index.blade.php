@@ -35,8 +35,8 @@
                     @foreach($allData as $item)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $item->firstName }}</td>
-                        <td>{{ $item->lastName}}</td>
+                        <td>{{ $item->first_name }}</td>
+                        <td>{{ $item->last_name}}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->phone }}</td>
                         <td>{{ $item->gender}}</td>
