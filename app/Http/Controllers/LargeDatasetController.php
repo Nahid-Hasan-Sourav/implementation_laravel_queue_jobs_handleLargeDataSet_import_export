@@ -31,8 +31,15 @@ class LargeDatasetController extends Controller
 $data = ProccessLargeDatasetImport::dispatch($filePath);
 
          return redirect()->route('largedataset.index')->with('message', 'Product import process started!');
-
+        $file = $request->file('file');
+         //$collection = Excel::toCollection(new LargeDataSetImport,$file );
+       //  $collection = Excel::import(new LargeDataSetImport,$file );
+       //  dd($collection);
+       $filePath = Storage::putFile('uploads', $file);
+       ProccessLargeDatasetImport::dispatch( $filePath);
+        return redirect()->route('largedataset.index')->with('success', 'Product import process started!');
 
 
     }
+   }
 }

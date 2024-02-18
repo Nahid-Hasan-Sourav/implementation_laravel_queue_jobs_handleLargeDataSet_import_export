@@ -31,7 +31,7 @@ Route::post('/user/create',[AuthController::class,'userCreate'])->name("user.cre
 Route::post('/userlogin',[AuthController::class,'userLogin'])->name("user.login");
 
 //AUTHENTIC ROUTE START HERE
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index'])->name("dashboard");
     Route::post('/user/logout',[AuthController::class,'userLogout'])->name("user.logout");
     Route::get('/category/view',[CatyegoryController::class,'index'])->name("category.view");
@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/product/import',      [ExcelImportController::class, 'importProduct'])->name('product.import');
 
 
-});
+// });
 //AUTHENTIC ROUTE END HERE
 
 
