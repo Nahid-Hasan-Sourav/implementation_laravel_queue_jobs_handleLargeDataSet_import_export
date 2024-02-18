@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LargeDataset extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+
+    protected $fillable = ['branch_id','first_name','last_name','email','phone','gender'];
 }

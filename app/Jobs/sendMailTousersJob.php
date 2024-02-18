@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\LargeDataset;
 use App\Models\User;
 use App\Mail\SendMailToUsers;
 use Illuminate\Bus\Queueable;
@@ -20,6 +21,7 @@ class sendMailTousersJob implements ShouldQueue
      */
     public $user;
     public $product;
+
     public function __construct($product)
     {
         // $this->user = $user;
@@ -31,9 +33,11 @@ class sendMailTousersJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $allUsers = User::where('role', 1)->get();
-        foreach($allUsers as $user){
-            Mail::to($user->email)->send(new SendMailToUsers($this->product, $user));
-        }
+        LargeDataset::chunk(1000, function ($users) {
+            foreach ($users as $user) {
+                Mail::to($user->email)->send(new SendMailToUsers($this->product, $user));
+            }
+        });
     }
+
 }
