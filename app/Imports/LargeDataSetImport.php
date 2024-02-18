@@ -29,6 +29,17 @@ class LargeDataSetImport implements ToCollection, WithChunkReading
 {
     public function collection(Collection $rows)
     {
+        foreach ($rows as $row)
+        {
+                LargeDataset::create([
+                    'branch_id' => intval($row[0]),
+                    'first_name'  => $row[1],
+                    'last_name'   => $row[2],
+                    'email'      => $row[3],
+                    'phone'      => $row[4],
+                    'gender'     => $row[5]
+
+                ]);
         // foreach ($rows as $row) 
         // {
         //     LargeDataset::create([
